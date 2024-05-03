@@ -5,14 +5,14 @@ import weatherRainy from "../../public/WeatherRainyCurrent.png"
 
 export default function CurrentWeather() {
   return (
-    <div className='relative bg-[#81ACDA] h-[450px] w-full px-5'>
+    <div className='relative bg-[#81ACDA] h-[497.6px] w-full px-5'>
       <div className='flex flex-col h-full justify-between py-3'>
-        <div>
+        <div className='pt-5'>
             <p className='font-bold text-white text-base'>Pekanbaru</p>
             <p className='text-[12px] text-white'>Friday, 3 May 2024</p>
         </div>
         <div>
-            <Image className='absolute top-0 left-0 px-5 mt-8' src={weatherRainy} alt='Weather Condition Clear'/>
+            <Image className='absolute top-0 left-0 px-5 mt-16' src={weatherRainy} alt='Weather Condition Clear'/>
         </div>
         <div className='flex justify-between items-center px-3'>
             <h1 className='text-[80px] font-bold text-white'>24°</h1>
