@@ -15,11 +15,11 @@ export default function WeeklyForecast() {
             <div className='font-bold flex justify-between'>
                 <p>Saturday</p>
                 <Image src={clearWeather} alt=''/>
-                <div className='flex gap-1'>
+                <div className='flex gap-1 items-center'>
                     <Image src={arrowUp} alt=''/>
                     <p>35°</p>
                 </div>
-                <div className='flex gap-1'>
+                <div className='flex gap-1 items-center'>
                     <Image src={arrowDown} alt=''/>
                     <p>26°</p>
                 </div>
@@ -27,11 +27,11 @@ export default function WeeklyForecast() {
             <div className='font-bold flex justify-between'>
                 <p>Saturday</p>
                 <Image src={clearWeather} alt=''/>
-                <div className='flex gap-1'>
+                <div className='flex gap-1 items-center'>
                     <Image src={arrowUp} alt=''/>
                     <p>35°</p>
                 </div>
-                <div className='flex gap-1'>
+                <div className='flex gap-1 items-center'>
                     <Image src={arrowDown} alt=''/>
                     <p>26°</p>
                 </div>
@@ -39,11 +39,11 @@ export default function WeeklyForecast() {
             <div className='font-bold flex justify-between'>
                 <p>Saturday</p>
                 <Image src={clearWeather} alt=''/>
-                <div className='flex gap-1'>
+                <div className='flex gap-1 items-center'>
                     <Image src={arrowUp} alt=''/>
                     <p>35°</p>
                 </div>
-                <div className='flex gap-1'>
+                <div className='flex gap-1 items-center'>
                     <Image src={arrowDown} alt=''/>
                     <p>26°</p>
                 </div>
@@ -51,11 +51,11 @@ export default function WeeklyForecast() {
             <div className='font-bold flex justify-between'>
                 <p>Saturday</p>
                 <Image src={clearWeather} alt=''/>
-                <div className='flex gap-1'>
+                <div className='flex gap-1 items-center'>
                     <Image src={arrowUp} alt=''/>
                     <p>35°</p>
                 </div>
-                <div className='flex gap-1'>
+                <div className='flex gap-1 items-center'>
                     <Image src={arrowDown} alt=''/>
                     <p>26°</p>
                 </div>
@@ -63,11 +63,11 @@ export default function WeeklyForecast() {
             <div className='font-bold flex justify-between'>
                 <p>Saturday</p>
                 <Image src={clearWeather} alt=''/>
-                <div className='flex gap-1'>
+                <div className='flex gap-1 items-center'>
                     <Image src={arrowUp} alt=''/>
                     <p>35°</p>
                 </div>
-                <div className='flex gap-1'>
+                <div className='flex gap-1 items-center'>
                     <Image src={arrowDown} alt=''/>
                     <p>26°</p>
                 </div>
