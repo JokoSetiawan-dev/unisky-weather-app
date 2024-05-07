@@ -1,5 +1,6 @@
 import CurrentWeather from "./Components/CurrentWeather";
 import DailyForecast from "./Components/DailyForecast";
+import Footer from "./Components/Footer";
 import HumidityIndex from "./Components/HumidityIndex";
 import Navbar from "./Components/Navbar";
 import Pressure from "./Components/Pressure";
@@ -23,6 +24,7 @@ export default function Home() {
         <Pressure/>
         <SunriseSet/>
       </div>
+      <Footer/>
     </main>
   );
 }
