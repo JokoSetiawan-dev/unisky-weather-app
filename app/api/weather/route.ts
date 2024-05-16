@@ -1,22 +1,37 @@
-import axios from "axios";
-import { NextRequest, NextResponse } from "next/server";
+import axios from 'axios';
+import { NextRequest, NextResponse } from 'next/server';
 
-
-export async function GET(req: NextRequest){
+export async function GET(req: NextRequest) {
     try {
+        const apiKey = process.env.OPENWEATHERMAP_API_KEY;
 
-        const apiKey = process.env.OPENWEATHERMAP_API_KEY
-        const latitude = 0.53333
-        const longitude = 101.46667
-        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`
+        // Check if the API key is available
+        if (!apiKey) {
+            throw new Error('API key is missing');
+        }
 
-        const res =  await axios.get(url)
-        
-        return NextResponse.json(res.data)
-        
+        const latitude = 0.53333;
+        const longitude = 101.46667;
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+
+        const res = await axios.get(url);
+
+        return NextResponse.json(res.data);
     } catch (error) {
-        console.log("Error fetching forecast data:", error);
+        console.error("Error fetching forecast data:", error);
 
-        return new Response("Error fetching forecast data", {status:500}); 
+        // Type guard to handle Axios errors
+        if (axios.isAxiosError(error)) {
+            const { status, data } = error.response!;
+            return new Response(`Error fetching forecast data: ${data.message}`, { status });
+        }
+
+        // Handle other types of errors (network issues, etc.)
+        if (error instanceof Error) {
+            return new Response(`Error fetching forecast data: ${error.message}`, { status: 500 });
+        }
+
+        // Fallback for unknown error types
+        return new Response("An unknown error occurred", { status: 500 });
     }
 }
