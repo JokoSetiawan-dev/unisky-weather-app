@@ -27,7 +27,7 @@ const Search: React.FC = () => {
         </DialogTrigger>
         <DialogContent className="m max-w-[330px] rounded-3xl">
           <DialogHeader className="text-left">
-            <DialogTitle className="text-sm">Choose Location</DialogTitle>
+            <DialogTitle className="text-sm">Choosee Location</DialogTitle>
             <DialogDescription className="text-[10px] pb-3">
               Choose the Locations You Want to See
             </DialogDescription>
