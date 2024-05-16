@@ -1,3 +1,4 @@
+"use client"
 import CurrentWeather from "./Components/CurrentWeather";
 import DailyForecast from "./Components/DailyForecast";
 import Footer from "./Components/Footer";
