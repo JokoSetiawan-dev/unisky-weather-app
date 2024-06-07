@@ -15,8 +15,8 @@ export default function Home() {
     <main>
       <Navbar/>
       <CurrentWeather/>
-      {/* <DailyForecast/>
-      <WeeklyForecast/>
+      {/* <DailyForecast/> */}
+      {/* <WeeklyForecast/> */}
       <div className="flex w-full items-center justify-between p-4">
         <UvIndex/>
         <HumidityIndex/>
@@ -25,7 +25,7 @@ export default function Home() {
         <Pressure/>
         <SunriseSet/>
       </div>
-      <Footer/> */}
+      <Footer/>
     </main>
   );
 }
