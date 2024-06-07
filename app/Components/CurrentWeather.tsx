@@ -103,7 +103,7 @@ export default function CurrentWeather() {
   }
 
   const formattedDescription = toProperCase(description)
-  const weatherIcon = getIcon()  // Call getIcon to get the actual icon
+  const weatherIcon = getIcon()
 
   return (
     <div className='bg-[#81ACDA] h-[497.6px] w-full px-5'>
