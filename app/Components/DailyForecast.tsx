@@ -1,6 +1,7 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
-import clearWeather from "../../public/clear-weather-icon.png"
+import clearWeather from "@/public/clear-day.png"
 
 
 export default function DailyForecast() {

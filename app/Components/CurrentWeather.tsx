@@ -1,4 +1,8 @@
 "use client"
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useGlobalContext } from '../context/globalContext'

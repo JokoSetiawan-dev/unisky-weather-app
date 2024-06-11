@@ -21,7 +21,7 @@ export default function Home() {
         <UvIndex/>
         <HumidityIndex/>
       </div>
-      <div className="flex gap-5 items-center justify-center">
+      <div className="flex gap-5 items-center justify-center p-4">
         <Pressure/>
         <SunriseSet/>
       </div>

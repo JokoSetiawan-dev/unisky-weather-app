@@ -1,3 +1,8 @@
+"use client"
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 import React from 'react'
 import Image from 'next/image'
 import sunriseIcon from "../../public/sunrise-icon.png"
