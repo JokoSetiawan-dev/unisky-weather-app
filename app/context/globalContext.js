@@ -23,13 +23,29 @@ export const GlobalContextProvider = ({children}) => {
         }
     }
 
+    const [dailyForecast, setDailyForecast] = useState({})
+
+    const fetchDaily = async () => {
+        try {
+            
+            const dailyRes = await axios.get("api/fiveDay")
+
+            setDailyForecast(dailyRes.data)
+            console.log(dailyRes.data)
+
+        } catch (error) {
+            console.log("Failed to fetch daily data", error.message)
+        }
+    }
+
     useEffect(() => {
         fetchForecast()
+        fetchDaily()
     }, [])
 
     return(
         <GlobalContext.Provider value={{
-            forecast,
+            forecast, dailyForecast
         }}>
             <GlobalContextUpdate.Provider>
                 {children}
