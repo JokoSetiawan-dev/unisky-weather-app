@@ -16,7 +16,7 @@ export default function Home() {
       <Navbar/>
       <CurrentWeather/>
       <DailyForecast/>
-      {/* <WeeklyForecast/> */}
+      <WeeklyForecast/>
       <div className="flex w-full items-center justify-between p-4">
         <UvIndex/>
         <HumidityIndex/>

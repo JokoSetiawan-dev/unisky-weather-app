@@ -117,11 +117,11 @@ export default function DailyForecast() {
                         return (
                           <CarouselItem
                             key={forecast.dt_txt}
-                            className="flex flex-col gap-1 justify-center items-center cursor-grab w-full"
+                            className="flex flex-col justify-between  items-center cursor-grab w-full"
                           >
                             <p>{timeLabel}</p>
                             <Image
-                              className="w-[27px] h-auto"
+                              className="w-[27px] h-auto my-2"
                               src={weatherIcon ?? ""}
                               alt="weather icon"
                             />

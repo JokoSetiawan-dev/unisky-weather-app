@@ -31,7 +31,7 @@ export const GlobalContextProvider = ({children}) => {
             const dailyRes = await axios.get("api/fiveDay")
 
             setDailyForecast(dailyRes.data)
-            console.log(dailyRes.data)
+            console.log("api daily",dailyRes.data)
 
         } catch (error) {
             console.log("Failed to fetch daily data", error.message)
