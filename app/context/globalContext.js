@@ -38,14 +38,30 @@ export const GlobalContextProvider = ({children}) => {
         }
     }
 
+    const [uvForecast, setUvForecast] = useState({})
+
+    const uvIndex = async () => {
+        try {
+            
+            const uvData = await axios.get("api/uv")
+
+            setUvForecast(uvData.data)
+            console.log("api uv",uvData.data)
+
+        } catch (error) {
+            console.log("Failed to fetch uv data", error.message)
+        }
+    }
+
     useEffect(() => {
         fetchForecast()
         fetchDaily()
+        uvIndex()
     }, [])
 
     return(
         <GlobalContext.Provider value={{
-            forecast, dailyForecast
+            forecast, dailyForecast, uvForecast
         }}>
             <GlobalContextUpdate.Provider>
                 {children}
