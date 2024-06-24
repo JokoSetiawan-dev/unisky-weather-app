@@ -1,75 +1,86 @@
-"use client"
-import axios from "axios"
-import React, { useContext, createContext, useEffect } from "react"
-import { useState } from "react"
+"use client";
+import axios from "axios";
+import React, { useContext, createContext, useEffect, useState } from "react";
 
-const GlobalContext = createContext()
-const GlobalContextUpdate = createContext()
+const GlobalContext = createContext();
+const GlobalContextUpdate = createContext();
 
-export const GlobalContextProvider = ({children}) => {
+export const GlobalContextProvider = ({ children }) => {
+  const [forecast, setForecast] = useState({});
+  const [dailyForecast, setDailyForecast] = useState({});
+  const [uvForecast, setUvForecast] = useState({});
 
-    const [forecast, setForecast] = useState({})
+  const fetchForecast = async (latitude, longitude) => {
+    try {
+      const res = await axios.get("/api/weather", {
+        params: { latitude, longitude },
+      });
 
-    const fetchForecast = async () => {
-        try {
-            
-            const res = await axios.get("api/weather")
-
-            setForecast(res.data)
-            console.log(res)
-
-        } catch (error) {
-            console.log("Failed to fetch forecast data", error.message)
-        }
+      setForecast(res.data);
+      console.log(res);
+    } catch (error) {
+      console.log("Failed to fetch forecast data", error.message);
     }
+  };
 
-    const [dailyForecast, setDailyForecast] = useState({})
+  const fetchDaily = async (latitude, longitude) => {
+    try {
+      const dailyRes = await axios.get("/api/fiveDay", {
+        params: { latitude, longitude },
+      });
 
-    const fetchDaily = async () => {
-        try {
-            
-            const dailyRes = await axios.get("api/fiveDay")
-
-            setDailyForecast(dailyRes.data)
-            console.log("api daily",dailyRes.data)
-
-        } catch (error) {
-            console.log("Failed to fetch daily data", error.message)
-        }
+      setDailyForecast(dailyRes.data);
+      console.log("api daily", dailyRes.data);
+    } catch (error) {
+      console.log("Failed to fetch daily data", error.message);
     }
+  };
 
-    const [uvForecast, setUvForecast] = useState({})
+  const uvIndex = async (latitude, longitude) => {
+    try {
+      const uvData = await axios.get("/api/uv", {
+        params: { latitude, longitude },
+      });
 
-    const uvIndex = async () => {
-        try {
-            
-            const uvData = await axios.get("api/uv")
-
-            setUvForecast(uvData.data)
-            console.log("api uv",uvData.data)
-
-        } catch (error) {
-            console.log("Failed to fetch uv data", error.message)
-        }
+      setUvForecast(uvData.data);
+      console.log("api uv", uvData.data);
+    } catch (error) {
+      console.log("Failed to fetch uv data", error.message);
     }
+  };
 
-    useEffect(() => {
-        fetchForecast()
-        fetchDaily()
-        uvIndex()
-    }, [])
+  useEffect(() => {
+    const getLocationAndFetchWeather = async () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            const { latitude, longitude } = position.coords;
+            console.log("Location:", latitude, longitude);
 
-    return(
-        <GlobalContext.Provider value={{
-            forecast, dailyForecast, uvForecast
-        }}>
-            <GlobalContextUpdate.Provider>
-                {children}
-            </GlobalContextUpdate.Provider>
-        </GlobalContext.Provider>
-    )
+            await fetchForecast(latitude, longitude);
+            await fetchDaily(latitude, longitude);
+            await uvIndex(latitude, longitude);
+          },
+          (error) => {
+            console.error("Error getting location:", error);
+          }
+        );
+      } else {
+        console.error("Geolocation is not supported by this browser.");
+      }
+    };
 
-}
+    getLocationAndFetchWeather();
+  }, []);
 
-export const useGlobalContext = () => useContext(GlobalContext)
-export const useGlobalContextupdate = () => useContext(GlobalContextUpdate)
+  return (
+    <GlobalContext.Provider value={{ forecast, dailyForecast, uvForecast }}>
+      <GlobalContextUpdate.Provider value={{ fetchForecast, fetchDaily, uvIndex }}>
+        {children}
+      </GlobalContextUpdate.Provider>
+    </GlobalContext.Provider>
+  );
+};
+
+export const useGlobalContext = () => useContext(GlobalContext);
+export const useGlobalContextUpdate = () => useContext(GlobalContextUpdate);

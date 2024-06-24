@@ -13,14 +13,20 @@ export async function GET(req: NextRequest) {
       throw new Error("API key is missing");
     }
 
-    const latitude = 0.53333;
-    const longitude = 101.46667;
+    // Get latitude and longitude from query parameters
+    const { searchParams } = new URL(req.url);
+    const latitude = searchParams.get("latitude");
+    const longitude = searchParams.get("longitude");
+
+    if (!latitude || !longitude) {
+      throw new Error("Latitude and Longitude are required");
+    }
+
     const dailyUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
 
     const dailyResponse = await axios.get(dailyUrl);
 
     return NextResponse.json(dailyResponse.data);
-
   } catch (error) {
     console.error("Error getting daily data", error);
     return NextResponse.json({ error: "Error getting daily data" }, { status: 500 });

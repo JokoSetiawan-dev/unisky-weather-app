@@ -1,4 +1,3 @@
-
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
@@ -14,8 +13,14 @@ export async function GET(req: NextRequest) {
             throw new Error('API key is missing');
         }
 
-        const latitude = 0.53333;
-        const longitude = 101.46667;
+        const { searchParams } = new URL(req.url);
+        const latitude = searchParams.get("latitude");
+        const longitude = searchParams.get("longitude");
+
+        if (!latitude || !longitude) {
+            return new Response("Latitude and longitude are required", { status: 400 });
+        }
+
         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
 
         const res = await axios.get(url);
