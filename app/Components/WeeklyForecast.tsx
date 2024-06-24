@@ -108,7 +108,7 @@ export default function WeeklyForecast() {
         </div>
         <div className="text-xs flex flex-col gap-6">
           {dailyForecasts.map((day, i) => (
-            <div className="font-bold flex justify-between" key={i}>
+            <div className="font-bold flex justify-between items-center" key={i}>
               <p>{day.day}</p>
               <div className="flex w-[65%] justify-between items-center">
                 <Image
