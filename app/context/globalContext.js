@@ -60,6 +60,30 @@ export const GlobalContextProvider = ({ children }) => {
             await fetchForecast(latitude, longitude);
             await fetchDaily(latitude, longitude);
             await uvIndex(latitude, longitude);
+
+            // Function to calculate the time until the next 00:30
+            const getTimeUntilNextMidnightHalfHour = () => {
+              const now = new Date();
+              const next = new Date();
+              next.setHours(0, 30, 0, 0);
+
+              if (now > next) {
+                next.setDate(next.getDate() + 1);
+              }
+
+              return next.getTime() - now.getTime();
+            };
+
+            // Set the initial timeout to fetch at 00:30
+            const initialTimeout = getTimeUntilNextMidnightHalfHour();
+            setTimeout(() => {
+              fetchDaily(latitude, longitude);
+
+              // Set an interval to fetch daily every 24 hours (86400000 milliseconds)
+              setInterval(() => {
+                fetchDaily(latitude, longitude);
+              }, 86400000);
+            }, initialTimeout);
           },
           (error) => {
             console.error("Error getting location:", error);

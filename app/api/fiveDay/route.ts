@@ -8,12 +8,10 @@ export async function GET(req: NextRequest) {
   try {
     const apiKey = process.env.OPENWEATHERMAP_API_KEY;
 
-    // Check if the API key is available
     if (!apiKey) {
       throw new Error("API key is missing");
     }
 
-    // Get latitude and longitude from query parameters
     const { searchParams } = new URL(req.url);
     const latitude = searchParams.get("latitude");
     const longitude = searchParams.get("longitude");
