@@ -9,26 +9,42 @@ import Pressure from "./Components/Pressure";
 import SunriseSet from "./Components/SunriseSet";
 import UvIndex from "./Components/UvIndex";
 import WeeklyForecast from "./Components/WeeklyForecast";
-import IntroductionPage from "./Components/introPage";
+import IntroductionPage from "./Components/introductionPage";
 
 export default function Home() {
   const [showIntroduction, setShowIntroduction] = useState(true);
+  const [geoLocationAllowed, setGeoLocationAllowed] = useState(false);
 
   useEffect(() => {
-    // Set a timer to hide the introduction page after 3 seconds (3000 ms)
     const timer = setTimeout(() => {
       setShowIntroduction(false);
-    }, 3000);
+    }, 1000);
 
-    // Cleanup the timer on component unmount
     return () => clearTimeout(timer);
   }, []);
+
+  // Function to handle geolocation permission
+  const handleAllowLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log("Location:", position.coords.latitude, position.coords.longitude);
+          setGeoLocationAllowed(true);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
 
   return (
     <main>
       {showIntroduction ? (
-        <IntroductionPage />
-      ) : (
+        <IntroductionPage onAllowLocation={handleAllowLocation} />
+      ) : geoLocationAllowed ? (
         <>
           <Navbar />
           <CurrentWeather />
@@ -44,6 +60,8 @@ export default function Home() {
           </div>
           <Footer />
         </>
+      ) : (
+        <IntroductionPage onAllowLocation={handleAllowLocation} />
       )}
     </main>
   );
