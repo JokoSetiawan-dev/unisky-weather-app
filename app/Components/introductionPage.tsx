@@ -33,7 +33,7 @@ const IntroPage: React.FC<IntroPageProps> = ({ onAllowLocation }) => {
       <div className='ml-2'>
         <Image src={uniskyLogo} alt='Humidity Image' />
       </div>
-      <div className='w-20 h-auto mt-4'>
+      <div className='w-[40px] h-auto'>
         <Image src={loading} alt='Loading Image' unoptimized />
       </div>
     </div>
