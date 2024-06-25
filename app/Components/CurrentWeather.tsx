@@ -126,7 +126,7 @@ export default function CurrentWeather() {
         <div className='flex justify-between items-center px-3'>
           <h1 className='text-[80px] font-bold text-white'>{temp}°</h1>
           <div className='flex flex-col justify-end items-end text-white'>
-            <p className='font-bold text-[20px]'>{formattedDescription}</p>
+            <p className='font-bold text-[18px]'>{formattedDescription}</p>
             <p className='text-[12px]'>Low: {minTemp}°  High: {maxTemp}°</p>
           </div>
         </div>
