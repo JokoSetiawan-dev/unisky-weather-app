@@ -99,8 +99,8 @@ export default function WeeklyForecast() {
   }
 
   return (
-    <div className="w-full px-5">
-      <div className="flex flex-col px-5 py-6 shadow-lg rounded-3xl h-[300px] gap-6">
+    <div className="w-full h-auto px-5">
+      <div className="flex flex-col px-5 pt-6 mb-7 shadow-lg rounded-3xl h-[300px] gap-6">
         <div>
           <h1 className="text-xs font-bold">
             5 Days Forecast for {city?.name}

@@ -114,7 +114,7 @@ export default function CurrentWeather() {
 
   return (
     <div className='h-[497.6px] w-full px-5 relative' style={{ backgroundColor }}>
-      <Image className='absolute inset-0 z-0 w-full mt-3 opacity-40 h-auto' src={elipse} alt="" />
+      <Image className='absolute inset-0 z-0 w-full mt-3 opacity-80 h-auto' src={elipse} alt="" />
       <div className='flex flex-col h-full justify-between py-3'>
         <div className='pt-5'>
           <p className='font-bold text-white text-base'>{name}</p>

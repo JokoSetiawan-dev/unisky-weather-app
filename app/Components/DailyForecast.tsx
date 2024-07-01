@@ -3,7 +3,7 @@
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { useGlobalContext } from "../context/globalContext";
 import {
@@ -68,37 +68,47 @@ export default function DailyForecast() {
     return <div>Loading...</div>;
   }
 
-  const { city, list } = dailyForecast;
+  const { list } = dailyForecast;
 
   const today = new Date();
   const todayString = today.toLocaleDateString("en-CA");
 
-  console.log("today string", todayString);
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrowString = tomorrow.toLocaleDateString("en-CA");
 
   const todayForecast = list.filter(
     (forecast: {
       dt_txt: string;
       main: { temp: number };
       weather: { main: string; description: string }[];
-    }) => {
-      return forecast.dt_txt.startsWith(todayString);
-    }
-  );
+    }) => forecast.dt_txt.startsWith(todayString)
+  ).slice(0, 7);
 
-  console.log("today forecast hourly", todayForecast);
+  const tomorrowForecast = list.filter(
+    (forecast: {
+      dt_txt: string;
+      main: { temp: number };
+      weather: { main: string; description: string }[];
+    }) => forecast.dt_txt.startsWith(tomorrowString)
+  ).slice(0, 7);
+
+  const combinedForecast = [...todayForecast, ...tomorrowForecast];
+
+  console.log("combined forecast hourly", combinedForecast);
 
   return (
     <div className="m-5">
-      <div className="flex flex-col justify-center h-[90px] w-full shadow-md rounded-3xl">
+      <div className="flex flex-col justify-center h-[100px] w-full shadow-md rounded-3xl">
         <div className="flex text-xs justify-around mx-5">
           <div className="h-full flex overflow-hidden w-full mx-2">
-            {todayForecast.length < 1 ? (
+            {combinedForecast.length < 1 ? (
               <div>Loading...</div>
             ) : (
               <div className="w-full">
                 <Carousel className="w-full">
-                  <CarouselContent className="flex flex-row gap-5 justify-between mx-1 w-10">
-                    {todayForecast.map(
+                  <CarouselContent className="flex flex-row gap-7 justify-between mx-1 w-10">
+                    {combinedForecast.map(
                       (forecast: {
                         dt_txt: string;
                         main: { temp: number };
@@ -117,7 +127,7 @@ export default function DailyForecast() {
                         return (
                           <CarouselItem
                             key={forecast.dt_txt}
-                            className="flex flex-col justify-between  items-center cursor-grab w-full"
+                            className="flex flex-col justify-between items-center cursor-grab w-full"
                           >
                             <p>{timeLabel}</p>
                             <Image
