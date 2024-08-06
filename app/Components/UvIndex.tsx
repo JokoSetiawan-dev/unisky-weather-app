@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import uvImage from "../../public/uv-image.png";
+import sunImage from "@/public/clear-day.png";
 import { useGlobalContext } from "../context/globalContext";
 
 export default function UvIndex() {
@@ -9,7 +9,7 @@ export default function UvIndex() {
   if (!uvForecast || !uvForecast.daily || !uvForecast.daily.uv_index_max) {
     return <div>Loading...</div>; // or handle the loading state appropriately
   }
-  
+
   const { daily } = uvForecast;
 
   const { uv_index_max } = daily;
@@ -51,11 +51,20 @@ export default function UvIndex() {
   };
 
   return (
-    <div className="relative w-[190px] h-[190px]">
-      <Image src={uvImage} alt="UV Image" layout="fill" objectFit="cover" />
-      <div className="absolute inset-0 flex flex-col justify-center mt-20 items-center gap-1">
-        <p className="text-white font-extrabold text-sm">{uvIndexCategory(uvIndexMax).text}</p>
-        <p className="text-white text-[10px] text-center w-[80%]">{uvIndexCategory(uvIndexMax).protection}</p>
+    <div className="flex flex-col  justify-center w-[185.3px] h-[120px] md:h-[170px] md:w-[170px] bg-white rounded-3xl shadow-lg">
+      <div className=" flex flex-col justify-between items-center h-full pt-2">
+        <div className="flex items-center self-start justify-center gap-3 pl-4">
+          <Image src={sunImage} alt="sun image uv index" className="w-[15px]" />
+          <h1 className="text-[14px] font-bold">UV Index</h1>
+        </div>
+        <div className="flex flex-col items-center justify-center w-[80%] h-full gap-3">
+          <p className="text-black font-extrabold text-md">
+            {uvIndexCategory(uvIndexMax).text}
+          </p>
+          <p className="text-black text-[10px] w-full text-center">
+          {uvIndexCategory(uvIndexMax).protection}
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -98,7 +98,7 @@ export default function DailyForecast() {
   console.log("combined forecast hourly", combinedForecast);
 
   return (
-    <div className="m-5">
+    <div className="m-5 md:m-0 md:mx-5">
       <div className="flex flex-col justify-center h-[100px] w-full shadow-md rounded-3xl">
         <div className="flex text-xs justify-around mx-5">
           <div className="h-full flex overflow-hidden w-full mx-2">

@@ -100,13 +100,13 @@ export default function WeeklyForecast() {
 
   return (
     <div className="w-full h-auto px-5">
-      <div className="flex flex-col px-5 pt-6 mb-7 shadow-lg rounded-3xl h-[300px] gap-6">
+      <div className="flex flex-col px-5 pt-6 shadow-lg rounded-3xl gap-6 h-auto md:py-5">
         <div>
           <h1 className="text-xs font-bold">
             5 Days Forecast for {city?.name}
           </h1>
         </div>
-        <div className="text-xs flex flex-col gap-6">
+        <div className="text-xs flex flex-col gap-6 pb-6 md:py-3 md:gap-8">
           {dailyForecasts.map((day, i) => (
             <div className="font-bold flex justify-between items-center" key={i}>
               <p>{day.day}</p>

@@ -23,15 +23,17 @@ export default function SunriseSet() {
   const sunsetTime = getTimeFromTimestamp(sys?.sunset)
 
   return (
-    <div className='flex w-[230px] h-[110px] justify-around bg-white rounded-3xl shadow-lg'>
-      <div className='flex flex-row items-center gap-10'>
+    <div className='flex w-[385.6px] h-[120px] md:h-[170px] md:w-full justify-around bg-white rounded-3xl shadow-lg'>
+      <div className='flex flex-row items-center gap-12 md:gap-20'>
         <div className='flex flex-col items-center justify-center'>
-          <Image src={sunriseIcon} alt='sunrise icon'/>
           <h1 className='font-bold text-sm mt-2'>Sunrise</h1>
           <p className='text-sm'>{sunriseTime}</p>
         </div>
-        <div className='flex flex-col items-center justify-center'>
+        <div className='flex gap-6'>
+          <Image src={sunriseIcon} alt='sunrise icon'/>
           <Image src={sunsetIcon} alt='sunrise icon'/>
+        </div>
+        <div className='flex flex-col items-center justify-center'>
           <h1 className='font-bold text-sm mt-2'>Sunset</h1>
           <p className='text-sm'>{sunsetTime}</p>
         </div>
