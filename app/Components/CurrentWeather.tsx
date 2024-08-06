@@ -113,7 +113,7 @@ export default function CurrentWeather() {
   const backgroundColor = localTime ? '#81ACDA' : '#322660'
 
   return (
-    <div className='h-[497.6px] w-full px-5 relative' style={{ backgroundColor }}>
+    <div className='h-[497.6px] md:h-[400px] w-full px-5 relative md:rounded-b-3xl' style={{ backgroundColor }}>
       <Image className='absolute inset-0 z-0 w-full mt-3 opacity-80 h-auto' src={elipse} alt="" />
       <div className='flex flex-col h-full justify-between py-3'>
         <div className='pt-5'>
