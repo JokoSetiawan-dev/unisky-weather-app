@@ -10,6 +10,7 @@ import SunriseSet from "./Components/SunriseSet";
 import UvIndex from "./Components/UvIndex";
 import WeeklyForecast from "./Components/WeeklyForecast";
 import IntroductionPage from "./Components/introductionPage";
+import WindSpeed from "./Components/WindSpeed";
 
 export default function Home() {
   const [showIntroduction, setShowIntroduction] = useState(true);
@@ -28,7 +29,11 @@ export default function Home() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          console.log("Location:", position.coords.latitude, position.coords.longitude);
+          console.log(
+            "Location:",
+            position.coords.latitude,
+            position.coords.longitude
+          );
           setGeoLocationAllowed(true);
         },
         (error) => {
@@ -41,22 +46,35 @@ export default function Home() {
   };
 
   return (
-    <main>
+    <main className="md:p-10">
       {showIntroduction ? (
         <IntroductionPage onAllowLocation={handleAllowLocation} />
       ) : geoLocationAllowed ? (
         <>
-          <Navbar />
-          <CurrentWeather />
-          <DailyForecast />
-          <WeeklyForecast />
-          <div className="flex w-full items-center justify-between p-4">
-            <UvIndex />
-            <HumidityIndex />
+          <div className="md:flex">
+            <div className="md:w-[50%]">
+              <Navbar />
+              <CurrentWeather />
+            </div>
+            <div className="md:w-[50%] md:flex md:flex-col md:justify-between md:gap-5">
+              <DailyForecast />
+              <WeeklyForecast />
+            </div>
           </div>
-          <div className="flex gap-5 items-center justify-center p-4">
-            <Pressure />
-            <SunriseSet />
+          <div className="md:flex md:justify-start">
+            <div className="flex w-full items-center justify-between md:justify-start p-5 md:w-[50%] md:p-0">
+              <UvIndex />
+              <HumidityIndex />
+            </div>
+            <div className="flex gap-5 items-center justify-center px-4 pb-4 md:flex-col md:w-[50%]">
+              <div className="md:hidden">
+                <WindSpeed />
+              </div>
+              <Pressure />
+            </div>
+            <div className="flex items-center justify-center px-4">
+              <SunriseSet />
+            </div>
           </div>
           <Footer />
         </>
