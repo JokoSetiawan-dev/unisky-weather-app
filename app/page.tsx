@@ -67,9 +67,7 @@ export default function Home() {
               <HumidityIndex />
             </div>
             <div className="flex gap-5 items-center justify-center px-4 pb-4 md:flex-col md:w-[50%]">
-              <div className="md:hidden">
-                <WindSpeed />
-              </div>
+              <WindSpeed />
               <Pressure />
             </div>
             <div className="flex items-center justify-center px-4">

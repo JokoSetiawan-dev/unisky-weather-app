@@ -35,7 +35,7 @@ export default function Pressure() {
   const pressureDesc = pressureCondition();
 
   return (
-    <div className="w-[185.3px] h-[120px] md:w-auto flex flex-col md:flex-row justify-between items-center gap-2 shadow-lg rounded-3xl">
+    <div className="w-[46%] h-[120px] md:w-auto flex flex-col md:flex-row justify-between items-center gap-2 shadow-lg rounded-3xl">
       <div className="flex gap-3 items-center self-start pl-4 pt-2">
         <Image
           src={pressureIcon}

@@ -16,7 +16,7 @@ export default function WindSpeed() {
   const windSpeed = wind?.speed;
 
   return (
-    <div className="w-[185.3px] h-[120px] md:h-[170px] md:w-[170px] bg-white rounded-3xl shadow-lg">
+    <div className="w-[46%] h-[120px] md:h-[170px] md:w-[170px] bg-white rounded-3xl shadow-lg">
       <div className="flex flex-col h-full">
         <div className="flex justify-start items-center gap-3 pl-4 pt-2">
           <Image
@@ -24,10 +24,10 @@ export default function WindSpeed() {
             alt="humidity icon weather water drop"
             className="w-[15px] h-auto"
           />
-          <h1 className="text-black font-bold text-[14px]">Wind Speed</h1>
+          <h1 className="text-black font-bold text-[14px]">Wind</h1>
         </div>
         <div className=" flex flex-col items-center justify-center h-full">
-          <p className="text-black text-[30px] font-extrabold">{windSpeed} m/s</p>
+          <p className="text-black text-[30px] font-extrabold">{windSpeed} <span className="text-sm">m/s</span></p>
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ export default function HumidityIndex() {
   const humidityPersentage = main?.humidity;
 
   return (
-    <div className="w-[185.3px] h-[120px] md:h-[170px] md:w-[170px] bg-white rounded-3xl shadow-lg">
+    <div className="w-[46%] h-[120px] md:h-[170px] md:w-[170px] bg-white rounded-3xl shadow-lg">
       <div className="flex flex-col h-full">
         <div className="flex justify-start items-center gap-3 pl-4 pt-2">
           <Image

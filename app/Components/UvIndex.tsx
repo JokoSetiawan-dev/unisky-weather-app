@@ -51,7 +51,7 @@ export default function UvIndex() {
   };
 
   return (
-    <div className="flex flex-col  justify-center w-[185.3px] h-[120px] md:h-[170px] md:w-[170px] bg-white rounded-3xl shadow-lg">
+    <div className="flex flex-col  justify-center w-[46%] h-[120px] md:h-[170px] md:w-[170px] bg-white rounded-3xl shadow-lg">
       <div className=" flex flex-col justify-between items-center h-full pt-2">
         <div className="flex items-center self-start justify-center gap-3 pl-4">
           <Image src={sunImage} alt="sun image uv index" className="w-[15px]" />
