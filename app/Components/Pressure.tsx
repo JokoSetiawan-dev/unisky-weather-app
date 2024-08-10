@@ -35,14 +35,14 @@ export default function Pressure() {
   const pressureDesc = pressureCondition();
 
   return (
-    <div className="w-[46%] h-[120px] md:w-auto flex flex-col md:flex-row justify-between items-center gap-2 shadow-lg rounded-3xl">
+    <div className="w-[46%] h-[120px] flex flex-col justify-between items-center gap-2 shadow-lg rounded-3xl">
       <div className="flex gap-3 items-center self-start pl-4 pt-2">
         <Image
           src={pressureIcon}
           className="h-[15px] w-auto"
           alt="weather pressure icon "
         />
-        <h1 className="text-[14px] font-bold md:hidden">Pressure</h1>
+        <h1 className="text-[14px] font-bold">Pressure</h1>
       </div>
       <div className="flex flex-col h-full w-[80%] gap-2">
         <p className=" font-bold text-center">{pressureIndex} hpa</p>

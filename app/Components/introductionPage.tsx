@@ -31,9 +31,9 @@ const IntroPage: React.FC<IntroPageProps> = ({ onAllowLocation }) => {
   return (
     <div className='flex flex-col justify-center items-center h-screen w-full bg-[#81ACDA]'>
       <div className='ml-2'>
-        <Image src={uniskyLogo} alt='Humidity Image' />
+        <Image src={uniskyLogo} alt='Humidity Image' className='md:w-[164px]' />
       </div>
-      <div className='w-[40px] h-auto'>
+      <div className='w-[40px] md:w-[80px] h-auto'>
         <Image src={loading} alt='Loading Image' unoptimized />
       </div>
     </div>
