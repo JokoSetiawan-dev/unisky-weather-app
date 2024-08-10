@@ -1,4 +1,8 @@
-"use client"
+"use client";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import React, { useEffect, useState } from 'react'
 import uniskyLogo from "../../public/unisky-logo.svg"
 import Image from 'next/image'
