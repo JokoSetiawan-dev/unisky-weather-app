@@ -1,33 +1,40 @@
 "use client";
+
+
 import React, { useState, useEffect } from "react";
-import CurrentWeather from "./Components/CurrentWeather";
-import DailyForecast from "./Components/DailyForecast";
-import Footer from "./Components/Footer";
-import HumidityIndex from "./Components/HumidityIndex";
-import Navbar from "./Components/Navbar";
-import Pressure from "./Components/Pressure";
-import SunriseSet from "./Components/SunriseSet";
-import UvIndex from "./Components/UvIndex";
-import WeeklyForecast from "./Components/WeeklyForecast";
-import IntroductionPage from "./Components/introductionPage";
-import WindSpeed from "./Components/WindSpeed";
-import WeatherMap from "./Components/WeatherMap";
+import dynamic from "next/dynamic";
+
+// Dynamic imports
+const CurrentWeather = dynamic(() => import("./Components/CurrentWeather"), { ssr: false });
+const DailyForecast = dynamic(() => import("./Components/DailyForecast"), { ssr: false });
+const Footer = dynamic(() => import("./Components/Footer"), { ssr: false });
+const HumidityIndex = dynamic(() => import("./Components/HumidityIndex"), { ssr: false });
+const Navbar = dynamic(() => import("./Components/Navbar"), { ssr: false });
+const Pressure = dynamic(() => import("./Components/Pressure"), { ssr: false });
+const SunriseSet = dynamic(() => import("./Components/SunriseSet"), { ssr: false });
+const UvIndex = dynamic(() => import("./Components/UvIndex"), { ssr: false });
+const WeeklyForecast = dynamic(() => import("./Components/WeeklyForecast"), { ssr: false });
+const IntroductionPage = dynamic(() => import("../../unisky-weather-app/app/Components/introductionPage"), { ssr: false });
+const WindSpeed = dynamic(() => import("./Components/WindSpeed"), { ssr: false });
+const WeatherMap = dynamic(() => import("./Components/WeatherMap"), { ssr: false });
 
 export default function Home() {
   const [showIntroduction, setShowIntroduction] = useState(true);
   const [geoLocationAllowed, setGeoLocationAllowed] = useState(false);
+  const [geoLocationError, setGeoLocationError] = useState<string | null>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowIntroduction(false);
-    }, 3000);
+    if (typeof window !== "undefined") {
+      const timer = setTimeout(() => {
+        setShowIntroduction(false);
+      }, 3000);
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
-  // Function to handle geolocation permission
-  const handleAllowLocation = () => {
-    if (navigator.geolocation) {
+  useEffect(() => {
+    if (typeof window !== "undefined" && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           console.log(
@@ -39,52 +46,64 @@ export default function Home() {
         },
         (error) => {
           console.error("Error getting location:", error);
+          setGeoLocationError(error.message); // Set error message if geolocation fails
         }
       );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
     }
-  };
+  }, []);
+
+  if (showIntroduction) {
+    return <IntroductionPage onAllowLocation={() => {}} />;
+  }
+
+  if (!geoLocationAllowed && !geoLocationError) {
+    return <IntroductionPage onAllowLocation={() => {}} />; // Continue showing the introduction page until location is granted or denied
+  }
+
+  if (geoLocationError) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div>
+          <h2 className="text-xl font-semibold text-red-500">
+            Geolocation Error
+          </h2>
+          <p>{geoLocationError}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <main className="md:flex md:flex-col md:w-full md:justify-center">
-      {showIntroduction ? (
-        <IntroductionPage onAllowLocation={handleAllowLocation} />
-      ) : geoLocationAllowed ? (
-        <>
-          <div className="md:p-10">
-            <div className="md:flex">
-              <div className="md:w-[50%]">
-                <Navbar />
-                <CurrentWeather />
-              </div>
-              <div className="md:w-[50%] md:flex md:flex-col md:justify-between md:gap-5">
-                <DailyForecast />
-                <WeeklyForecast />
-              </div>
-            </div>
-            <div className="md:flex md:flex-col md:justify-start md:py-5 md:gap-5 md:w-[50%]">
-              <div className="flex w-full items-center justify-between  p-5 md:p-0">
-                <UvIndex />
-                <HumidityIndex />
-              </div>
-              <div className="flex w-full items-center justify-between  p-5 md:p-0">
-                <WindSpeed />
-                <Pressure />
-              </div>
-            </div>
-            <div className="flex items-center justify-center px-4 md:px-0 md:w-[50%]">
-              <SunriseSet />
-            </div>
-            <div className="px-4 pt-7 h-96 rounded-3xl">
-              <WeatherMap/>
-            </div>
-            <Footer />
+      <div className="md:p-10">
+        <div className="md:flex">
+          <div className="md:w-[50%]">
+            <Navbar />
+            <CurrentWeather />
           </div>
-        </>
-      ) : (
-        <IntroductionPage onAllowLocation={handleAllowLocation} />
-      )}
+          <div className="md:w-[50%] md:flex md:flex-col md:justify-between md:gap-5">
+            <DailyForecast />
+            <WeeklyForecast />
+          </div>
+        </div>
+        <div className="md:flex md:flex-col md:justify-start md:py-5 md:gap-5 md:w-[50%]">
+          <div className="flex w-full items-center justify-between p-5 md:p-0">
+            <UvIndex />
+            <HumidityIndex />
+          </div>
+          <div className="flex w-full items-center justify-between p-5 md:p-0">
+            <WindSpeed />
+            <Pressure />
+          </div>
+        </div>
+        <div className="flex items-center justify-center px-4 md:px-0 md:w-[50%]">
+          <SunriseSet />
+        </div>
+        <div className="px-4 pt-7 h-96 rounded-3xl">
+          <WeatherMap />
+        </div>
+        <Footer />
+      </div>
     </main>
   );
 }

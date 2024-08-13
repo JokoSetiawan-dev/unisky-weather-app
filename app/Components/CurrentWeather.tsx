@@ -42,45 +42,47 @@ export default function CurrentWeather() {
   const [year, setYear] = useState(0)
 
   useEffect(() => {
-    const determineDayOrNight = () => {
-      const date = new Date()
-      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-      const dayName = days[date.getDay()]
+    if (typeof window !== "undefined") {
+      const determineDayOrNight = () => {
+        const date = new Date()
+        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        const dayName = days[date.getDay()]
 
-      const day = date.getDate()
+        const day = date.getDate()
 
-      const months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-      ]
-      const monthName = months[date.getMonth()]
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ]
+        const monthName = months[date.getMonth()]
 
-      const year = date.getFullYear()
-      const hours = date.getHours()
-      const dayTime = hours >= 6 && hours < 18
+        const year = date.getFullYear()
+        const hours = date.getHours()
+        const dayTime = hours >= 6 && hours < 18
 
-      setLocalTime(dayTime)
-      setDayName(dayName)
-      setDay(day)
-      setMonth(monthName)
-      setYear(year)
+        setLocalTime(dayTime)
+        setDayName(dayName)
+        setDay(day)
+        setMonth(monthName)
+        setYear(year)
+      }
+
+      determineDayOrNight()
+
+      const intervalId = setInterval(determineDayOrNight, 60000)
+
+      return () => clearInterval(intervalId)
     }
-
-    determineDayOrNight()
-
-    const intervalId = setInterval(determineDayOrNight, 60000)
-
-    return () => clearInterval(intervalId)
   }, [])
 
   const getIcon = () => {

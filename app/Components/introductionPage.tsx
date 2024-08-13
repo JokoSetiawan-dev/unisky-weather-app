@@ -15,7 +15,7 @@ interface IntroPageProps {
 const IntroPage: React.FC<IntroPageProps> = ({ onAllowLocation }) => {
   useEffect(() => {
     const handleAllowLocation = () => {
-      if (navigator.geolocation) {
+      if (typeof window !== "undefined" && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             console.log("Location:", position.coords.latitude, position.coords.longitude);

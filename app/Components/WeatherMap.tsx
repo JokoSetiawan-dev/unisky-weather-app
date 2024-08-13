@@ -3,12 +3,31 @@
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 const TemperatureMap = () => {
-  const API_KEY = process.env.OPENWEATHERMAP_API_KEY;
-  const position: [number, number] = [51.505, -0.09]; // Default center of the map
+  const [position, setPosition] = useState<[number, number] | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setPosition([position.coords.latitude, position.coords.longitude]);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+          // Set a default position if geolocation fails (optional)
+          setPosition([0, 0]); // Center on equator
+        }
+      );
+    }
+  }, []);
+
+  if (!position) {
+    return <p>Loading map...</p>; // Show a loading message or spinner
+  }
 
   return (
     <MapContainer
