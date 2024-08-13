@@ -14,7 +14,7 @@ const Pressure = dynamic(() => import("./Components/Pressure"), { ssr: false });
 const SunriseSet = dynamic(() => import("./Components/SunriseSet"), { ssr: false });
 const UvIndex = dynamic(() => import("./Components/UvIndex"), { ssr: false });
 const WeeklyForecast = dynamic(() => import("./Components/WeeklyForecast"), { ssr: false });
-const IntroductionPage = dynamic(() => import("../../unisky-weather-app/app/Components/introductionPage"), { ssr: false });
+const IntroductionPage = dynamic(() => import("./Components/introductionPage"), { ssr: false });
 const WindSpeed = dynamic(() => import("./Components/WindSpeed"), { ssr: false });
 const WeatherMap = dynamic(() => import("./Components/WeatherMap"), { ssr: false });
 
