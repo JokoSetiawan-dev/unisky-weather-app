@@ -102,7 +102,7 @@ export default function Home() {
             <WeeklyForecast />
           </div>
         </div>
-        <div className="flex lg:gap-8 lg:py-5">
+        <div className="flex flex-col md:flex-row lg:gap-8 lg:py-5">
           <div className="md:flex md:flex-col md:justify-start md:py-5 md:gap-5 lg:gap-10 lg:h-auto md:w-[50%]">
             <div className="flex w-full items-center justify-between p-5 md:p-0">
               <UvIndex />
