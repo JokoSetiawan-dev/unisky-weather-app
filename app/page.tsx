@@ -1,22 +1,38 @@
 "use client";
 
-
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 
 // Dynamic imports
-const CurrentWeather = dynamic(() => import("./Components/CurrentWeather"), { ssr: false });
-const DailyForecast = dynamic(() => import("./Components/DailyForecast"), { ssr: false });
+const CurrentWeather = dynamic(() => import("./Components/CurrentWeather"), {
+  ssr: false,
+});
+const DailyForecast = dynamic(() => import("./Components/DailyForecast"), {
+  ssr: false,
+});
 const Footer = dynamic(() => import("./Components/Footer"), { ssr: false });
-const HumidityIndex = dynamic(() => import("./Components/HumidityIndex"), { ssr: false });
+const HumidityIndex = dynamic(() => import("./Components/HumidityIndex"), {
+  ssr: false,
+});
 const Navbar = dynamic(() => import("./Components/Navbar"), { ssr: false });
 const Pressure = dynamic(() => import("./Components/Pressure"), { ssr: false });
-const SunriseSet = dynamic(() => import("./Components/SunriseSet"), { ssr: false });
+const SunriseSet = dynamic(() => import("./Components/SunriseSet"), {
+  ssr: false,
+});
 const UvIndex = dynamic(() => import("./Components/UvIndex"), { ssr: false });
-const WeeklyForecast = dynamic(() => import("./Components/WeeklyForecast"), { ssr: false });
-const IntroductionPage = dynamic(() => import("./Components/introductionPage"), { ssr: false });
-const WindSpeed = dynamic(() => import("./Components/WindSpeed"), { ssr: false });
-const WeatherMap = dynamic(() => import("./Components/WeatherMap"), { ssr: false });
+const WeeklyForecast = dynamic(() => import("./Components/WeeklyForecast"), {
+  ssr: false,
+});
+const IntroductionPage = dynamic(
+  () => import("./Components/introductionPage"),
+  { ssr: false }
+);
+const WindSpeed = dynamic(() => import("./Components/WindSpeed"), {
+  ssr: false,
+});
+const WeatherMap = dynamic(() => import("./Components/WeatherMap"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [showIntroduction, setShowIntroduction] = useState(true);
@@ -74,9 +90,9 @@ export default function Home() {
   }
 
   return (
-    <main className="md:flex md:flex-col md:w-full md:justify-center">
-      <div className="md:p-10">
-        <div className="md:flex">
+    <main className="md:flex md:flex-col md:w-full md:justify-center ">
+      <div className="md:p-7 lg:p-16 xl:p-24 ">
+        <div className="md:flex lg:gap-8">
           <div className="md:w-[50%]">
             <Navbar />
             <CurrentWeather />
@@ -86,21 +102,23 @@ export default function Home() {
             <WeeklyForecast />
           </div>
         </div>
-        <div className="md:flex md:flex-col md:justify-start md:py-5 md:gap-5 md:w-[50%]">
-          <div className="flex w-full items-center justify-between p-5 md:p-0">
-            <UvIndex />
-            <HumidityIndex />
+        <div className="flex lg:gap-8 lg:py-5">
+          <div className="md:flex md:flex-col md:justify-start md:py-5 md:gap-5 lg:gap-10 lg:h-auto md:w-[50%]">
+            <div className="flex w-full items-center justify-between p-5 md:p-0">
+              <UvIndex />
+              <HumidityIndex />
+            </div>
+            <div className="flex w-full items-center justify-between p-5 md:p-0">
+              <WindSpeed />
+              <Pressure />
+            </div>
+            <div className="flex items-center justify-center px-4 md:px-0">
+              <SunriseSet />
+            </div>
           </div>
-          <div className="flex w-full items-center justify-between p-5 md:p-0">
-            <WindSpeed />
-            <Pressure />
+          <div className="px-4 py-7 h-96 rounded-3xl md:w-[50%] md:h-auto md:py-5">
+            <WeatherMap />
           </div>
-        </div>
-        <div className="flex items-center justify-center px-4 md:px-0 md:w-[50%]">
-          <SunriseSet />
-        </div>
-        <div className="px-4 pt-7 h-96 rounded-3xl">
-          <WeatherMap />
         </div>
         <Footer />
       </div>
