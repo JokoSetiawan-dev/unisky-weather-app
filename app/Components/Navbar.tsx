@@ -6,7 +6,6 @@ export const revalidate = 0;
 import React, { useEffect, useState } from 'react'
 import uniskyLogo from "../../public/unisky-logo.svg"
 import Image from 'next/image'
-import Search from './Ui/Search'
 
 function Navbar() {
   const [isDayTime, setIsDayTime] = useState(true)
@@ -32,7 +31,6 @@ function Navbar() {
       <div className='flex items-center top-0 w-full h-[72px]'>
         <div className='flex flex-row items-center justify-between w-full px-5'>
           <Image className='w-[82px] h-auto' src={uniskyLogo} alt='unisky logo'/> 
-          <Search/>
         </div>
       </div>
     </div>
