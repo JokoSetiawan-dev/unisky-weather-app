@@ -24,11 +24,8 @@ export async function GET(req: NextRequest) {
 
     const uvData = res.data;
 
-    console.log("uv data", uvData);
-
     return NextResponse.json(uvData);
   } catch (error) {
-    console.log("Error Getting Uv Data", error);
     return new Response("Error getting Uv Data", { status: 500 });
   }
 }

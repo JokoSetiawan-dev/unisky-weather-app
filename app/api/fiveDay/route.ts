@@ -26,7 +26,6 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(dailyResponse.data);
   } catch (error) {
-    console.error("Error getting daily data", error);
     return NextResponse.json({ error: "Error getting daily data" }, { status: 500 });
   }
 }

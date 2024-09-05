@@ -27,7 +27,7 @@ export async function GET(req: NextRequest) {
 
         return NextResponse.json(res.data);
     } catch (error) {
-        console.error("Error fetching forecast data:", error);
+        // console.error("Error fetching forecast data:", error);
 
         // Type guard to handle Axios errors
         if (axios.isAxiosError(error)) {

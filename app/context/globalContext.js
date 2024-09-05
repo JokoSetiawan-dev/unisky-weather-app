@@ -17,7 +17,7 @@ export const GlobalContextProvider = ({ children }) => {
       });
 
       setForecast(res.data);
-      console.log(res);
+      // console.log(res);
     } catch (error) {
       console.log("Failed to fetch forecast data", error.message);
     }
@@ -30,7 +30,7 @@ export const GlobalContextProvider = ({ children }) => {
       });
 
       setDailyForecast(dailyRes.data);
-      console.log("api daily", dailyRes.data);
+      // console.log("api daily", dailyRes.data);
     } catch (error) {
       console.log("Failed to fetch daily data", error.message);
     }
@@ -43,7 +43,7 @@ export const GlobalContextProvider = ({ children }) => {
       });
 
       setUvForecast(uvData.data);
-      console.log("api uv", uvData.data);
+      // console.log("api uv", uvData.data);
     } catch (error) {
       console.log("Failed to fetch uv data", error.message);
     }
@@ -55,7 +55,7 @@ export const GlobalContextProvider = ({ children }) => {
         navigator.geolocation.getCurrentPosition(
           async (position) => {
             const { latitude, longitude } = position.coords;
-            console.log("Location:", latitude, longitude);
+            // console.log("Location:", latitude, longitude);
 
             await fetchForecast(latitude, longitude);
             await fetchDaily(latitude, longitude);
